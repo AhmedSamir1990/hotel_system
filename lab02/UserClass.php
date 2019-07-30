@@ -9,6 +9,8 @@ class User
     public $Password;
     public $UserType_Obj;
     public $ID;
+    public $Mobile;
+    public $SSN;
     private $GPA;
 
     function __construct($id)
@@ -26,7 +28,9 @@ class User
                 $this->Email=$row["Email"];
                 $this->Password=$row["Password"];
                 $this->DOB=$row["DOB"];
+                $this->DOB=$row["SSN"];
                 $this->ID=$row["ID"];
+                $this->ID=$row["Mobile"];
                 $this->UserType_OBJ=new UserType ($row["UserType_id"]);
                 
             }
@@ -59,13 +63,13 @@ class User
 
     }
 
-    static function InsertInDB_static($FullName,$SSN,$Email,$DOB,$Password)
+    static function InsertInDB_static($FullName,$SSN,$Email,$DOB,$Password,$Mobile)
     {
         // $conn= new mysqli("localhost","root","","student");
         $conn = db::MakeConn();
 
-        $sql="insert into person(FullName,SSN,Email,DOB,Password,UserType_id) values
-        ('$FullName','$SSN','$Email','$DOB','$Password',1)";
+        $sql="insert into person(FullName,SSN,Email,DOB,Password,UserType_id,Mobile) values
+        ('$FullName','$SSN','$Email','$DOB','$Password',1,'$Mobile')";
         //echo $sql;
         mysqli_query($conn,$sql);
     }
